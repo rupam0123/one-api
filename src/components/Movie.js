@@ -20,11 +20,11 @@ export default function Book() {
     <h1>Movie List</h1>
     <div>
     {movies.map((data=>
-    <li key={data.id}>
+    <li key={data._id}>
       <tr>
        <tr>{data.name}</tr>
-       <Link to ={`movie/${data.id}/quote`}>
-       <Button varient="danger">MovieQuote</Button>
+       <Link to ={`movie/${data._id}/quotes`}>
+       <Button variant="danger" >MovieQuote</Button>
        </Link>
       </tr>
       </li>

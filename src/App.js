@@ -5,17 +5,31 @@ import Book from './components/Book';
 import Movie from './components/Movie'
 import Character from './components/Character';
 import MovieQuote from './components/MovieQuote';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 
 function App() {
   return(
     <Router>
-      <Link to ="/book">Book</Link><br/>
-      <Link to ="/movie">Movie</Link><br/>
-      <Link to ="/character">character</Link><br/>
-      <Route path="/book" component={Book} />
-      <Route path="/movie" component={Movie} />
-      <Route path="/character" component={Character} />
-      <Route path="/movie/:id/quote" component={MovieQuote}/>
+
+
+<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Container>
+  <Navbar.Brand href="/">API</Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    <Nav className="me-auto">
+      <Nav.Link href="/book">Books</Nav.Link>
+      <Nav.Link href="/movie">Movies</Nav.Link>
+      <Nav.Link href="/character">Character</Nav.Link>
+    </Nav>
+    
+  </Navbar.Collapse>
+  </Container>
+</Navbar>
+      <Route exact path="/book" component={Book} />
+      <Route exact path="/movie" component={Movie} />
+      <Route exact path="/character" component={Character} />
+      <Route exact path="/movie/:id/quotes" component={MovieQuote}/>
     </Router>
 
   )
