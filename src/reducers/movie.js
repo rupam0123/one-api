@@ -1,16 +1,36 @@
-import { SET_MOVIE } from "../actions";
+import { SET_MOVIE_FIELD , SET_MOVIE_FILTER } from "../actions";
 
 const initialState = {
-  movie:[]
+  movie:{
+    movie:[],
+    filter:{page:1,limit:100}
+  
+  }
 }
 
 export const getMovie=(state = initialState, action)=> {
   switch (action.type) {
-    case SET_MOVIE:
+    case SET_MOVIE_FIELD:
       return {
         ...state,
-        movie: action.payload
+        movie:{
+          ...state.movie,
+          ...action.payload
+        }
+         
       }
+      case SET_MOVIE_FILTER:
+        return{
+          ...state,
+          movie:{
+            ...state.movie,
+            filter :{
+              ...state.movie.filter,
+              ...action.payload,
+            }
+          }
+        }
+      
     default:
       return state
 

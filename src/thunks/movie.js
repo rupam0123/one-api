@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {setMovie } from '../actions';
+import { setMvieField} from '../actions';
 
 const client = axios.create({
   baseURL: 'https://the-one-api.dev/v2',
@@ -7,10 +7,14 @@ const client = axios.create({
 
 client.defaults.headers.common['Authorization'] = 'Bearer ZBr1YayHfmvcC9WunJcp';
 
-export const requestMovie = () => async (dispatch) => {
+export const requestMovie = (prevFilters) => async (dispatch) => {
   try {
-    const response = await client.get('/movie');
-    dispatch(setMovie(response.data.docs));
+     const params = {
+      budgetInMillions: prevFilters.limit,
+    };
+    console.log("i am params",params.budgetInMillions)
+    const {data:{docs}} = await client.get(`/movie?budgetInMillions<${params.budgetInMillions}`,);
+    dispatch(setMvieField({movie:docs})); 
   } catch (err) {
     console.log(err);
   }

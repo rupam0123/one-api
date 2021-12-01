@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import {BrowserRouter as Router,Link,Route} from 'react-router-dom'
+import {BrowserRouter as Router,Route} from 'react-router-dom'
 import Book from './components/Book';
 import Movie from './components/Movie'
 import Character from './components/Character';

@@ -13,11 +13,6 @@ class MovieQuote extends React.Component {
   }
   render() {
     const { movie } = this.props
-    console.log("movie",movie)
-    if (!movie) return "Loading";
-    console.log('testing', movie)
-
-
     return (
 
       <div>
