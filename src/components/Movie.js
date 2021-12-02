@@ -20,11 +20,18 @@ export default function Book() {
 
 
   useEffect(() => {
-
-
-    dispatch(requestMovie(filter.limit));
-
-    dispatch(requestMovieRunTime(filter.minute));
+    if (filter.limit===undefined){
+      dispatch(requestMovie());
+    }
+    else{
+      dispatch(requestMovie(filter.limit));
+    }
+    if(filter.minute===undefined){
+      dispatch(requestMovieRunTime());
+    }
+    else{
+      dispatch(requestMovieRunTime(filter.minute));
+    }
 
 
   }, [filter.limit, filter.minute])
@@ -35,6 +42,7 @@ export default function Book() {
       <th>Name</th>
       <div>
         <select name="limit" value={filter.limit} onChange={handleChangeFilter} >budgetInMillion
+          <option>budgetInMillion</option>
           <option value={100}>100</option>
           <option value={200}>200</option>
           <option value={300}>300</option>
@@ -42,6 +50,7 @@ export default function Book() {
           <option value={700}>700</option>
         </select>
         <select name="minute" value={filter.minute} onChange={handleChangeFilter} >runtimeInMinutes
+          <option>RunTimeMinutes</option>
           <option value={160}>160</option>
           <option value={200}>200</option>
           <option value={300}>300</option>

@@ -12,25 +12,32 @@ export const requestMovie = (prevFilters) => async (dispatch) => {
     const params = {
       budgetInMillions: prevFilters,
     };
+    if (prevFilters===undefined){
+      const { data: { docs } } = await client.get(`/movie`);
+      dispatch(setMvieField({ movie: docs }));
+    }
+    else{
     const { data: { docs } } = await client.get(`/movie?budgetInMillions<${params.budgetInMillions}`,);
     dispatch(setMvieField({ movie: docs }));
+    }
   } catch (err) {
     console.log(err);
   }
 }
-export const requestUser = () => async (dispatch) => {
-  const { data: { docs } } = await client.get("/movie");
-  dispatch(setMvieField({ movie: docs }));
-}
+
 export const requestMovieRunTime = (prevFilters) => async (dispatch) => {
   try {
     const params = {
       runtimeInMinutes: prevFilters,
     };
-    console.log("i am minute", params.runtimeInMinutes)
-    console.log("i am params", params.budgetInMillions)
+    if (prevFilters===undefined){
+      const { data: { docs } } = await client.get(`/movie`);
+      dispatch(setMvieField({ movie: docs }));
+    }
+    else{
     const { data: { docs } } = await client.get(`/movie?runtimeInMinutes>=${params.runtimeInMinutes}`,);
     dispatch(setMvieField({ movie: docs }));
+    }
   } catch (err) {
     console.log(err);
   }

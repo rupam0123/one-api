@@ -3,7 +3,7 @@ import { SET_MOVIE_FIELD, SET_MOVIE_FILTER } from "../actions";
 const initialState = {
   movie: {
     movie: [],
-    filter: { page: 1, limit: 700, minute: 160 }
+    filter: { page: 1, limit: undefined, minute: undefined }
 
   }
 }
